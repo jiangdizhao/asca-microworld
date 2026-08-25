@@ -1,0 +1,146 @@
+{
+  "crack_geometry": {
+    "construction": "original CadQuery plate minus one rotated shallow box cutter",
+    "subtractive_geometry": true,
+    "length_mm": 36.0,
+    "width_mm": 1.5,
+    "depth_mm": 0.25,
+    "center_mm": [
+      10.0,
+      8.0
+    ],
+    "angle_degrees": 35.0
+  },
+  "projected_crack": {
+    "roi_xyxy_pixels": [
+      281,
+      232,
+      466,
+      284
+    ],
+    "endpoint_a_xy_pixels": [
+      299.8668098449707,
+      251.74082279205322
+    ],
+    "endpoint_b_xy_pixels": [
+      445.9101104736328,
+      262.74693489074707
+    ],
+    "corners_xy_pixels": [
+      [
+        299.2791175842285,
+        253.01154613494873
+      ],
+      [
+        300.45093536376953,
+        250.47780990600586
+      ],
+      [
+        445.7649612426758,
+        264.08592224121094
+      ],
+      [
+        446.05430603027344,
+        261.41627311706543
+      ]
+    ]
+  },
+  "default_light": {
+    "roi_xyxy_pixels": [
+      281,
+      232,
+      466,
+      284
+    ],
+    "line_segment_pixels": 553,
+    "line_feature_extent_pixels": 290,
+    "distinguishable_fraction": 0.5244122965641953,
+    "local_crack_contrast_abs_mean": 26.816787719726562,
+    "local_crack_contrast_abs_p95": 114.86429901123044,
+    "line_luminance_mean": 166.1627655029297,
+    "nearby_plate_luminance_mean": 189.39857482910156,
+    "line_luminance_std": 71.0799331665039
+  },
+  "side_light": {
+    "roi_xyxy_pixels": [
+      281,
+      232,
+      466,
+      284
+    ],
+    "line_segment_pixels": 553,
+    "line_feature_extent_pixels": 399,
+    "distinguishable_fraction": 0.7215189873417721,
+    "local_crack_contrast_abs_mean": 49.70974349975586,
+    "local_crack_contrast_abs_p95": 117.76757049560547,
+    "line_luminance_mean": 126.36203002929688,
+    "nearby_plate_luminance_mean": 77.63951873779297,
+    "line_luminance_std": 41.93135070800781
+  },
+  "default_crack_vs_reflection": {
+    "crack_default_roi": {
+      "mean_luminance": 167.2057647705078,
+      "std_luminance": 70.94066619873047,
+      "p95_minus_p50_luminance": 60.859588623046875
+    },
+    "reflection_default_roi": {
+      "mean_luminance": 165.81759643554688,
+      "std_luminance": 72.84666442871094,
+      "p95_minus_p50_luminance": 65.85958862304688
+    },
+    "crack_default_line_feature": 290,
+    "reflection_default_line_feature": 509,
+    "reflection_default_local_contrast": 52.2804069519043
+  },
+  "key_light": {
+    "type": "AREA",
+    "energy": 120000.0,
+    "size_x_mm": 25.0,
+    "size_y_mm": 12.0,
+    "color": [
+      1.0,
+      0.95,
+      0.9
+    ],
+    "default_position": [
+      -120.0,
+      156.0,
+      100.0
+    ],
+    "side_position": [
+      140.0,
+      -140.0,
+      100.0
+    ],
+    "target": [
+      10.0,
+      8.0,
+      6.0
+    ]
+  },
+  "held_constant": [
+    "plate_crack.stl and bolt.stl geometry",
+    "uniform neutral-gray material: metallic=0.7, roughness=0.30",
+    "camera pose and intrinsics",
+    "resolution 640x480",
+    "fill AREA light transform, type, size, energy, and colour",
+    "world background colour and strength",
+    "Cycles settings",
+    "AgX colour management, exposure, and gamma"
+  ],
+  "cycles": {
+    "engine": "CYCLES",
+    "samples": 256,
+    "adaptive_sampling": true,
+    "adaptive_threshold": 0.009999999776482582,
+    "denoising": true,
+    "denoiser": "OPENIMAGEDENOISE",
+    "device_mode": "GPU",
+    "gpu_enabled": true,
+    "devices": [
+      "NVIDIA GeForce RTX 3070 Ti Laptop GPU:OPTIX:use=True",
+      "12th Gen Intel Core i9-12900H:CPU:use=False",
+      "NVIDIA GeForce RTX 3070 Ti Laptop GPU:CUDA:use=True"
+    ]
+  }
+}
