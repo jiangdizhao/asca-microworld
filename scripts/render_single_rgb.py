@@ -1,10 +1,9 @@
-from pathlib import Path
-
 import blenderproc as bproc
+from pathlib import Path
 import bpy
 import numpy as np
-import imageio.v2 as imageio
 
+import imageio.v2 as imageio
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MODEL_PATH = REPO_ROOT / "outputs" / "plate_with_bolt.stl"
@@ -18,7 +17,10 @@ def main():
     bproc.init()
 
     # Import STL
-    bpy.ops.wm.stl_import(filepath=str(MODEL_PATH))
+    try:
+        bpy.ops.wm.stl_import(filepath=str(MODEL_PATH))
+    except Exception:
+        bpy.ops.import_mesh.stl(filepath=str(MODEL_PATH))
 
     # Camera
     cam_location = np.array([140.0, -140.0, 100.0])
