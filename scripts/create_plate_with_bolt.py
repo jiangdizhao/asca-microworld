@@ -73,6 +73,10 @@ def export_models(plate: cq.Workplane, bolt: cq.Workplane) -> None:
     cq.exporters.export(plate, str(OUTPUT_DIR / "plate.step"))
     cq.exporters.export(bolt, str(OUTPUT_DIR / "bolt.step"))
 
+    # Individual STLs for separate material/shading control in Blender
+    cq.exporters.export(plate, str(OUTPUT_DIR / "plate.stl"))
+    cq.exporters.export(bolt, str(OUTPUT_DIR / "bolt.stl"))
+
     combined = cq.Compound.makeCompound([plate.val(), bolt.val()])
     cq.exporters.export(combined, str(OUTPUT_DIR / "plate_with_bolt.step"))
     cq.exporters.export(combined, str(OUTPUT_DIR / "plate_with_bolt.stl"))
@@ -88,6 +92,8 @@ def main() -> None:
     print("Generated:")
     print("  - plate.step")
     print("  - bolt.step")
+    print("  - plate.stl")
+    print("  - bolt.stl")
     print("  - plate_with_bolt.step")
     print("  - plate_with_bolt.stl")
 
