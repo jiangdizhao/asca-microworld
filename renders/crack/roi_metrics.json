@@ -1,9 +1,11 @@
 {
   "crack_geometry": {
-    "construction": "original CadQuery plate minus one rotated shallow box cutter",
+    "construction": "original CadQuery plate minus one rotated shallow asymmetric tapered groove cutter",
     "subtractive_geometry": true,
     "length_mm": 36.0,
-    "width_mm": 1.5,
+    "top_width_mm": 1.0,
+    "bottom_width_mm": 0.08,
+    "bottom_offset_mm": 0.22,
     "depth_mm": 0.25,
     "center_mm": [
       10.0,
@@ -16,7 +18,7 @@
       281,
       232,
       466,
-      284
+      283
     ],
     "endpoint_a_xy_pixels": [
       299.8668098449707,
@@ -28,20 +30,20 @@
     ],
     "corners_xy_pixels": [
       [
-        299.2791175842285,
-        253.01154613494873
+        299.4754219055176,
+        252.58711338043213
       ],
       [
-        300.45093536376953,
-        250.47780990600586
+        300.2566146850586,
+        250.89796543121338
       ],
       [
-        445.7649612426758,
-        264.08592224121094
+        445.8134460449219,
+        263.63865852355957
       ],
       [
-        446.05430603027344,
-        261.41627311706543
+        446.00635528564453,
+        261.85890197753906
       ]
     ]
   },
@@ -50,47 +52,59 @@
       281,
       232,
       466,
-      284
+      283
     ],
     "line_segment_pixels": 553,
-    "line_feature_extent_pixels": 290,
-    "distinguishable_fraction": 0.5244122965641953,
-    "local_crack_contrast_abs_mean": 26.816787719726562,
-    "local_crack_contrast_abs_p95": 114.86429901123044,
-    "line_luminance_mean": 166.1627655029297,
-    "nearby_plate_luminance_mean": 189.39857482910156,
-    "line_luminance_std": 71.0799331665039
+    "line_feature_extent_pixels": 216,
+    "distinguishable_fraction": 0.39059674502712477,
+    "local_crack_contrast_abs_mean": 11.169939041137695,
+    "local_crack_contrast_abs_p95": 42.600808715820285,
+    "line_luminance_mean": 181.8795166015625,
+    "nearby_plate_luminance_mean": 189.40377807617188,
+    "line_luminance_std": 70.2411117553711,
+    "fraction_dark": 0.26763110307414106,
+    "fraction_bright": 0.12296564195298372,
+    "fraction_mixed": 0.39059674502712477,
+    "signed_local_contrast_mean": -6.888428211212158
   },
   "side_light": {
     "roi_xyxy_pixels": [
       281,
       232,
       466,
-      284
+      283
     ],
     "line_segment_pixels": 553,
-    "line_feature_extent_pixels": 399,
-    "distinguishable_fraction": 0.7215189873417721,
-    "local_crack_contrast_abs_mean": 49.70974349975586,
-    "local_crack_contrast_abs_p95": 117.76757049560547,
-    "line_luminance_mean": 126.36203002929688,
-    "nearby_plate_luminance_mean": 77.63951873779297,
-    "line_luminance_std": 41.93135070800781
+    "line_feature_extent_pixels": 354,
+    "distinguishable_fraction": 0.6401446654611211,
+    "local_crack_contrast_abs_mean": 47.06486892700195,
+    "local_crack_contrast_abs_p95": 129.36968383789062,
+    "line_luminance_mean": 123.6299057006836,
+    "nearby_plate_luminance_mean": 77.63821411132812,
+    "line_luminance_std": 47.56146240234375,
+    "fraction_dark": 0.0018083182640144665,
+    "fraction_bright": 0.6383363471971067,
+    "fraction_mixed": 0.6401446654611211,
+    "signed_local_contrast_mean": 46.715389251708984
   },
   "default_crack_vs_reflection": {
     "crack_default_roi": {
-      "mean_luminance": 167.2057647705078,
-      "std_luminance": 70.94066619873047,
-      "p95_minus_p50_luminance": 60.859588623046875
+      "mean_luminance": 167.99856567382812,
+      "std_luminance": 71.07765197753906,
+      "p95_minus_p50_luminance": 58.78739929199219
     },
     "reflection_default_roi": {
-      "mean_luminance": 165.81759643554688,
-      "std_luminance": 72.84666442871094,
+      "mean_luminance": 165.6383819580078,
+      "std_luminance": 72.98908996582031,
       "p95_minus_p50_luminance": 65.85958862304688
     },
-    "crack_default_line_feature": 290,
+    "crack_default_line_feature": 216,
     "reflection_default_line_feature": 509,
-    "reflection_default_local_contrast": 52.2804069519043
+    "reflection_default_local_contrast": 52.2804069519043,
+    "reflection_default_fraction_dark": 0.37251356238698013,
+    "reflection_default_fraction_bright": 0.5479204339963833,
+    "reflection_default_fraction_mixed": 0.9204339963833634,
+    "reflection_default_signed_local_contrast_mean": -37.1906852722168
   },
   "key_light": {
     "type": "AREA",

@@ -16,12 +16,14 @@ PLATE_WIDTH = 70.0
 PLATE_THICKNESS = 6.0
 BOLT_CLEARANCE_DIAMETER = 9.0
 
-# Crack geometry: deliberately shallow and narrow so it remains a line-like
-# surface event rather than an obvious trench.
+# Crack geometry: a shallow tapered groove so the two sloped walls can produce
+# a mixed bright-edge/dark-edge response under the default key light.
 CRACK_CENTER = (10.0, 8.0)
 CRACK_LENGTH = 36.0
-CRACK_WIDTH = 1.5
+CRACK_WIDTH = 1.0
 CRACK_DEPTH = 0.25
+CRACK_BOTTOM_WIDTH = 0.08
+CRACK_BOTTOM_OFFSET = 0.22
 CRACK_ANGLE_DEG = 35.0
 CUTTER_OVERTRAVEL = 0.20
 
@@ -48,17 +50,24 @@ def build_original_plate() -> cq.Workplane:
 
 
 def build_crack_cutter() -> cq.Workplane:
-    """Return a rotated box that opens through the top surface."""
-    cutter_height = CRACK_DEPTH + CUTTER_OVERTRAVEL
+    """Return a rotated asymmetric tapered prism that opens through the top."""
+    cross_section = [
+        (-CRACK_WIDTH / 2.0, CUTTER_OVERTRAVEL),
+        (CRACK_WIDTH / 2.0, CUTTER_OVERTRAVEL),
+        (CRACK_BOTTOM_OFFSET + CRACK_BOTTOM_WIDTH / 2.0, -CRACK_DEPTH),
+        (CRACK_BOTTOM_OFFSET - CRACK_BOTTOM_WIDTH / 2.0, -CRACK_DEPTH),
+    ]
     return (
-        cq.Workplane("XY")
-        .box(CRACK_LENGTH, CRACK_WIDTH, cutter_height, centered=(True, True, False))
+        cq.Workplane("YZ")
+        .polyline(cross_section)
+        .close()
+        .extrude(CRACK_LENGTH / 2.0, both=True)
         .rotate((0.0, 0.0, 0.0), (0.0, 0.0, 1.0), CRACK_ANGLE_DEG)
         .translate(
             (
                 CRACK_CENTER[0],
                 CRACK_CENTER[1],
-                PLATE_THICKNESS - CRACK_DEPTH,
+                PLATE_THICKNESS,
             )
         )
     )
@@ -83,7 +92,14 @@ def main() -> None:
     bounds = cracked_plate.val().BoundingBox()
     print("Created subtractive geometric crack plate.")
     print(f"Output: {CRACK_STL}")
-    print(f"Length x width x depth: {CRACK_LENGTH} x {CRACK_WIDTH} x {CRACK_DEPTH} mm")
+    print(
+        "Length x top width x depth: "
+        f"{CRACK_LENGTH} x {CRACK_WIDTH} x {CRACK_DEPTH} mm"
+    )
+    print(
+        "Asymmetric tapered groove bottom width/offset: "
+        f"{CRACK_BOTTOM_WIDTH}/{CRACK_BOTTOM_OFFSET} mm"
+    )
     print(f"Center: {CRACK_CENTER} mm; angle: {CRACK_ANGLE_DEG} degrees")
     print(f"CadQuery validity: valid=True, solids={solid_count}")
     print(
@@ -92,7 +108,7 @@ def main() -> None:
         f"y=({bounds.ymin:.3f}, {bounds.ymax:.3f}), "
         f"z=({bounds.zmin:.3f}, {bounds.zmax:.3f})"
     )
-    print("Construction: original plate minus one rotated shallow box cutter")
+    print("Construction: original plate minus one rotated shallow tapered groove cutter")
 
 
 if __name__ == "__main__":

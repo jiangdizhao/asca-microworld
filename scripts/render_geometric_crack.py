@@ -38,8 +38,10 @@ IMAGE_HEIGHT = 480
 
 CRACK_CENTER = (10.0, 8.0)
 CRACK_LENGTH = 36.0
-CRACK_WIDTH = 1.5
+CRACK_WIDTH = 1.0
 CRACK_DEPTH = 0.25
+CRACK_BOTTOM_WIDTH = 0.08
+CRACK_BOTTOM_OFFSET = 0.22
 CRACK_ANGLE_DEG = 35.0
 
 BASE_COLOR = (0.75, 0.75, 0.75, 1.0)
@@ -233,6 +235,13 @@ def crack_image_metrics(image, roi, p0, p1):
     contrast_values = np.abs(line_values - line_reference)
     distinguishable = contrast_values >= 10.0
 
+    # Sign and mixed-polarity diagnostics make the default-view shortcut
+    # explicit: classify line pixels against their nearby local plate value.
+    signed_delta = line_values - line_reference
+    dark = signed_delta <= -10.0
+    bright = signed_delta >= 10.0
+    mixed = dark | bright
+
     feature_pixels = int(distinguishable.sum())
     line_count = int(line.sum())
     return {
@@ -245,6 +254,10 @@ def crack_image_metrics(image, roi, p0, p1):
         "line_luminance_mean": float(line_values.mean()) if len(line_values) else 0.0,
         "nearby_plate_luminance_mean": float(reference_values.mean()) if len(reference_values) else 0.0,
         "line_luminance_std": float(line_values.std()) if len(line_values) else 0.0,
+        "fraction_dark": float(dark.mean()) if len(line_values) else 0.0,
+        "fraction_bright": float(bright.mean()) if len(line_values) else 0.0,
+        "fraction_mixed": float(mixed.mean()) if len(line_values) else 0.0,
+        "signed_local_contrast_mean": float(signed_delta.mean()) if len(line_values) else 0.0,
     }
 
 
@@ -342,13 +355,21 @@ def main():
         comparison["reflection_default_roi"] = roi_summary(reflection_default, roi)
         comparison["reflection_default_line_feature"] = reflection_metrics["line_feature_extent_pixels"]
         comparison["reflection_default_local_contrast"] = reflection_metrics["local_crack_contrast_abs_mean"]
+        comparison["reflection_default_fraction_dark"] = reflection_metrics["fraction_dark"]
+        comparison["reflection_default_fraction_bright"] = reflection_metrics["fraction_bright"]
+        comparison["reflection_default_fraction_mixed"] = reflection_metrics["fraction_mixed"]
+        comparison["reflection_default_signed_local_contrast_mean"] = reflection_metrics[
+            "signed_local_contrast_mean"
+        ]
 
     metrics = {
         "crack_geometry": {
-            "construction": "original CadQuery plate minus one rotated shallow box cutter",
+            "construction": "original CadQuery plate minus one rotated shallow asymmetric tapered groove cutter",
             "subtractive_geometry": True,
             "length_mm": CRACK_LENGTH,
-            "width_mm": CRACK_WIDTH,
+            "top_width_mm": CRACK_WIDTH,
+            "bottom_width_mm": CRACK_BOTTOM_WIDTH,
+            "bottom_offset_mm": CRACK_BOTTOM_OFFSET,
             "depth_mm": CRACK_DEPTH,
             "center_mm": list(CRACK_CENTER),
             "angle_degrees": CRACK_ANGLE_DEG,
