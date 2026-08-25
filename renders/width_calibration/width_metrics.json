@@ -1,0 +1,138 @@
+{
+  "measurement_rule": {
+    "description": "Contiguous cross-section width around the projected centreline.",
+    "t_range": [
+      0.3,
+      0.86
+    ],
+    "cross_sections": 48,
+    "cross_section_radius_px": 12.0,
+    "cross_section_step_px": 0.25,
+    "local_reference": "mean luminance at +/-10 px perpendicular to the centreline",
+    "threshold_intensity_levels": 10.0,
+    "valid_cross_section": "centreline contrast reaches the threshold",
+    "width": "contiguous thresholded run around centreline, measured in image pixels"
+  },
+  "fixed_feature": {
+    "center_mm": [
+      10.0,
+      8.0
+    ],
+    "length_mm": 36.0,
+    "angle_degrees": 35.0,
+    "projected_endpoint_a_px": [
+      299.8668098449707,
+      251.74082279205322
+    ],
+    "projected_endpoint_b_px": [
+      445.9101104736328,
+      262.74693489074707
+    ]
+  },
+  "target": {
+    "name": "C3",
+    "default": {
+      "median_width_px": 1.25,
+      "mean_width_px": 2.066666666666667,
+      "width_std_px": 3.3855903801585656,
+      "width_p10_px": 1.25,
+      "width_p90_px": 1.75,
+      "number_of_valid_cross_sections": 45,
+      "default_local_contrast_levels_mean": 18.992201081853928,
+      "default_local_contrast_levels_median": 16.499554229567774,
+      "signed_contrast_levels_mean": -18.992201081853928,
+      "bright_fraction": 0.0,
+      "dark_fraction": 1.0
+    },
+    "side": {
+      "median_width_px": 3.0,
+      "mean_width_px": 2.9791666666666665,
+      "width_std_px": 0.34169207222618175,
+      "width_p10_px": 2.5,
+      "width_p90_px": 3.5,
+      "number_of_valid_cross_sections": 48,
+      "default_local_contrast_levels_mean": 85.49048702113369,
+      "default_local_contrast_levels_median": 85.12807746354498,
+      "signed_contrast_levels_mean": 85.49048702113369,
+      "bright_fraction": 1.0,
+      "dark_fraction": 0.0,
+      "response_change": {
+        "side_response_change_levels_mean_abs": 103.8563580413565,
+        "default_signed_response_levels_mean": -18.36587102022281,
+        "side_signed_response_levels_mean": 85.49048702113369,
+        "side_minus_default_signed_response_levels_mean": 103.8563580413565
+      }
+    }
+  },
+  "ranking_by_default_width_error": [
+    {
+      "candidate": "RW1",
+      "physical_width_mm": 0.6,
+      "default_apparent_width_px": 1.5,
+      "width_error_px": 0.25,
+      "default_local_contrast_levels": 17.95951266690417,
+      "side_light_response_change_levels": 19.788790925003575,
+      "default_width_std_px": 3.409635373188631,
+      "default_valid_cross_sections": 44,
+      "default_signed_contrast_levels": -0.26303869587077805,
+      "default_bright_fraction": 0.6818181818181818,
+      "default_dark_fraction": 0.3181818181818182,
+      "width_rank": 1
+    },
+    {
+      "candidate": "RW2",
+      "physical_width_mm": 0.9,
+      "default_apparent_width_px": 2.0,
+      "width_error_px": 0.75,
+      "default_local_contrast_levels": 24.082221422323887,
+      "side_light_response_change_levels": 26.991300441955094,
+      "default_width_std_px": 3.2338372274452194,
+      "default_valid_cross_sections": 46,
+      "default_signed_contrast_levels": -6.3785965918276695,
+      "default_bright_fraction": 0.6739130434782609,
+      "default_dark_fraction": 0.32608695652173914,
+      "width_rank": 2
+    },
+    {
+      "candidate": "RW3",
+      "physical_width_mm": 1.2,
+      "default_apparent_width_px": 2.5,
+      "width_error_px": 1.25,
+      "default_local_contrast_levels": 30.452729037901257,
+      "side_light_response_change_levels": 33.74162451307182,
+      "default_width_std_px": 3.131585688193009,
+      "default_valid_cross_sections": 46,
+      "default_signed_contrast_levels": -12.629855294353002,
+      "default_bright_fraction": 0.6739130434782609,
+      "default_dark_fraction": 0.32608695652173914,
+      "width_rank": 3
+    },
+    {
+      "candidate": "RW4",
+      "physical_width_mm": 1.5,
+      "default_apparent_width_px": 3.25,
+      "width_error_px": 2.0,
+      "default_local_contrast_levels": 33.99192585795341,
+      "side_light_response_change_levels": 38.13292901187447,
+      "default_width_std_px": 3.0136440900801422,
+      "default_valid_cross_sections": 47,
+      "default_signed_contrast_levels": -16.506743718791927,
+      "default_bright_fraction": 0.6595744680851063,
+      "default_dark_fraction": 0.3404255319148936,
+      "width_rank": 4
+    }
+  ],
+  "held_constant": [
+    "C3 geometry and existing C3 renders",
+    "camera and intrinsics",
+    "plate and bolt",
+    "feature centre, length, and angle",
+    "default/side key light poses, energy, size, and colour",
+    "fill light",
+    "world/background",
+    "base material",
+    "Cycles settings",
+    "AgX/exposure",
+    "resolution 640x480"
+  ]
+}
