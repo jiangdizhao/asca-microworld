@@ -44,7 +44,7 @@ def main() -> None:
     # Use one light and change only its position between the two renders.
     light = bproc.types.Light()
     light.set_type("POINT")
-    light.set_energy(6000)
+    light.set_energy(9000)
 
     # Default/front-ish illumination.
     light.set_location([120.0, -120.0, 180.0])
